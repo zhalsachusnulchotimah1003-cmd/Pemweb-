@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas 5 - Rantai Metode jQuery</title>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+        body {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #fff5f8;
+        }
+        #notification {
+            width: 300px;
+            padding: 20px;
+            text-align: center;
+            color: white;
+            background-color: #ff69b4; 
+            border-radius: 15px;
+            display: none; 
+            box-shadow: 0px 4px 15px rgba(255, 105, 180, 0.4);
+            margin-top: 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        button {
+            padding: 12px 25px;
+            cursor: pointer;
+            border-radius: 25px;
+            border: none;
+            background-color: #ff1493; /* Pink Tombol */
+            color: white;
+            font-weight: bold;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <h2 id="title">Notifikasi Animasi Chainin</h2>
+    <button id="show-btn">Pencet aku!>< ✨</button>
+
+    <div id="notification"></div>
+
+    <script>
+        $(document).ready(function(){
+            $("#show-btn").click(function(){
+                var notif = $("#notification");
+
+                // Berhenti jika ada animasi yang sedang jalan
+                notif.stop(true, true).hide();
+
+                // Chaining untuk memisahkan pesan secara berurutan
+                notif
+                    // Pesan 1
+                    .text("Hy, Apakabar?")
+                    .fadeIn(500).delay(1000).fadeOut(500)
+                    
+                    // Pesan 2 (Menggunakan antrian/queue untuk ganti teks)
+                    .queue(function(next){ 
+                        $(this).text("Have a nice day, yyeah!"); 
+                        next(); 
+                    })
+                    .fadeIn(500).delay(1000).fadeOut(500)
+
+                    // Pesan 3
+                    .queue(function(next){ 
+                        $(this).text("And Have a great day all! 🌟"); 
+                        next(); 
+                    })
+                    .fadeIn(500).delay(1500).fadeOut(500);
+
+                // Variasi pada judul
+                $("#title").fadeOut(300).fadeIn(300);
+            });
+        });
+    </script>
+
+</body>
+</html>

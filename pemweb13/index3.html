@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas 3 - FAQ Interaktif jQuery</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 800px;
+            margin: auto;
+        }
+        .faq-container {
+            margin-top: 20px;
+        }
+        .question {
+            background-color: #ffe4c4;
+            padding: 15px;
+            margin-bottom: 5px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .question-hover {
+            background-color: #deb887;
+            color: darksalmon;
+        }
+        .answer {
+            background-color: #ffebcd;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            display: none; 
+        }
+        .arrow {
+            float: right;
+            transition: transform 0.3s;
+        }
+        .expanded .arrow {
+            transform: rotate(90deg);
+        }
+    </style>
+</head>
+<body>
+    <h1>FAQ Interaktif</h1>
+
+    <div class="faq-container">
+        <div class="question" id="q1">
+            Apa itu jQuery? <span class="arrow">▶</span>
+        </div>
+        <div class="answer">
+            jQuery adalah sebuah library JavaScript yang berfungsi untuk mempermudah proses pembuatan website yang interaktif. Dengan jQuery, kita bisa menulis kode JavaScript dengan cara yang lebih singkat, rapi, dan mudah dipahami.
+        </div>
+
+        <div class="question" id="q2">
+            Bagaimana cara menggunakan .click() di jQuery? <span class="arrow">▶</span>
+        </div>
+        <div class="answer">
+            cara menggunakan .click() di jQuery adalah dengan menghubungkannya ke suatu elemen HTML, lalu menentukan aksi apa yang akan dijalankan ketika elemen tersebut diklik. Metode .click() berfungsi untuk menangkap peristiwa klik dari pengguna, misalnya saat tombol, teks, atau elemen lain ditekan dengan mouse.
+            Pertama, pastikan jQuery sudah dipanggil di dalam file HTML. Setelah itu, kita memilih elemen yang ingin diberi aksi klik menggunakan selector jQuery, lalu menuliskan fungsi yang akan dijalankan ketika klik terjadi. Semua kode jQuery biasanya ditulis di dalam $(document).ready() agar dijalankan setelah halaman selesai dimuat.
+        </div>
+
+        <div class="question" id="q3">
+            Apa fungsi dari .toggle()? <span class="arrow">▶</span>
+        </div>
+        <div class="answer">
+            .toggle() pada jQuery berfungsi untuk menampilkan dan menyembunyikan elemen secara bergantian. Artinya, jika suatu elemen sedang terlihat, maka .toggle() akan menyembunyikannya, dan jika elemen tersebut sedang tersembunyi, .toggle() akan menampilkannya kembali.
+            Fungsi ini sangat sering digunakan untuk membuat tampilan web menjadi lebih interaktif, misalnya pada fitur FAQ, menu dropdown, atau bagian konten yang bisa dibuka dan ditutup dengan klik. Dengan .toggle(), kita tidak perlu mengecek kondisi elemen secara manual apakah sedang tampil atau tidak, karena jQuery sudah menangani perubahan tampil–sembunyi tersebut secara otomatis.
+            Singkatnya, .toggle() mempermudah pengaturan visibilitas elemen sehingga interaksi pengguna menjadi lebih praktis dan efisien.
+        </div>
+        
+        <div class="question" id="q4">
+            Apa perbedaan antara .hover() dan CSS :hover? <span class="arrow">▶</span>
+        </div>
+        <div class="answer">
+            Perbedaan antara .hover() di jQuery dan :hover di CSS terletak pada cara kerja dan tujuan penggunaannya. :hover pada CSS digunakan khusus untuk mengubah tampilan elemen ketika kursor mouse berada di atas elemen tersebut. Perubahan yang dilakukan bersifat visual saja, seperti mengganti warna, ukuran, atau background, dan akan langsung kembali ke kondisi semula saat kursor keluar. CSS :hover bekerja tanpa JavaScript sehingga lebih ringan dan cepat.
+            Sementara itu, .hover() pada jQuery digunakan untuk menangani aksi ketika kursor masuk dan keluar dari suatu elemen dengan cara yang lebih fleksibel. Dengan .hover(), kita bisa menjalankan berbagai perintah JavaScript, bukan hanya mengubah tampilan. Misalnya, menampilkan atau menyembunyikan elemen lain, menjalankan animasi, atau memicu fungsi tertentu saat mouse masuk dan keluar dari sebuah elemen.
+            Kesimpulannya, CSS :hover lebih cocok untuk efek visual sederhana, sedangkan .hover() jQuery digunakan ketika interaksi yang dibutuhkan lebih kompleks dan melibatkan logika atau perubahan pada elemen lain di halaman.
+
+        <div class="question" id="q5">
+            Apakah jQuery masih relevan di tahun ini? <span class="arrow">▶</span>
+        </div>
+        <div class="answer">
+            jQuery masih relevan di tahun ini, tetapi penggunaannya sudah tidak sebanyak dulu. Relevansinya sekarang lebih ke konteks tertentu, bukan sebagai pilihan utama untuk semua proyek.
+            Untuk website sederhana, tugas kuliah, atau proyek lama yang memang sudah memakai jQuery, library ini masih sangat berguna. jQuery tetap mempermudah pembuatan fitur interaktif seperti klik, hover, toggle, FAQ, dan manipulasi DOM tanpa harus menulis JavaScript yang panjang. Karena sintaksnya mudah dipahami, jQuery juga masih sering dipakai sebagai alat belajar dasar JavaScript dan DOM.
+            Namun, untuk pengembangan web modern berskala besar, jQuery mulai ditinggalkan karena JavaScript murni (Vanilla JS) sudah jauh lebih kuat dan browser sekarang sudah mendukung banyak fitur yang dulu hanya dimiliki jQuery. Selain itu, framework modern seperti React, Vue, atau Angular lebih cocok untuk aplikasi web yang kompleks dan dinamis.
+            Jadi, jQuery masih layak digunakan untuk kebutuhan sederhana dan pembelajaran, tetapi untuk proyek modern yang besar, biasanya lebih disarankan menggunakan JavaScript modern atau framework terbaru.
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            // Saat pertanyaan diklik
+            $(".question").click(function() {
+                // Toggle jawaban di bawah pertanyaan yang diklik
+                $(this).next(".answer").slideToggle();
+
+                // Tambahkan/lepaskan kelas expanded untuk memutar panah
+                $(this).toggleClass("expanded");
+            });
+
+            // Efek hover agar pertanyaan berubah warna
+            $(".question").hover(
+                function() {
+                    $(this).addClass("question-hover");
+                }, 
+                function() {
+                    $(this).removeClass("question-hover");
+                }
+            );
+        });
+    </script>
+</body>
+</html>
